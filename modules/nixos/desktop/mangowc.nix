@@ -9,12 +9,20 @@
   # Set Mango as the default login session
   services.displayManager.defaultSession = "mango";
 
-  # Noctalia desktop shell and Wayland utilities
+  # Runtime dependencies for a functional Mango desktop
   environment.systemPackages = with pkgs; [
-    noctalia          # Modern desktop shell for Wayland (bar, launcher, widgets)
-    wl-clipboard      # Clipboard management for Wayland
-    swaybg            # Wayland wallpaper tool
-    fuzzel            # Lightweight Wayland app launcher
-    alacritty         # Terminal emulator
+    # Core UI Tools
+    foot              # Default terminal for mango config
+    rofi              # Application launcher
+    waybar            # Status bar
+    polkit_gnome      # Authentication agent (for sudo/GUI apps)
+    
+    # Utilities
+    wl-clipboard      # Clipboard management
+    wlsunset          # Gamma control / night light
+    brightnessctl     # Screen brightness
+    
+    # Session Management
+    wlogout           # Simple logout dialog
   ];
 }
