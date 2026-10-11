@@ -1,0 +1,14 @@
+# Environment and secrets
+.env.json
+
+# Nix and build outputs
+result
+result-*
+.direnv/
+
+# System and editor artifacts
+*.swp
+*~
+.DS_Store
+.idea/
+.vscode/

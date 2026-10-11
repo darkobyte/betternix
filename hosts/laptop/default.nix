@@ -1,0 +1,23 @@
+{ ... }:
+{
+  imports = [
+    ./hardware-configuration.nix
+
+    # Core system modules
+    ../../modules/core/default.nix
+
+    # Desktop stack
+    ../../modules/desktop/default.nix
+
+    # Applications
+    ../../modules/apps/firefox.nix
+    ../../modules/apps/brave.nix
+    ../../modules/apps/discord.nix
+    ../../modules/apps/spotify.nix
+    ../../modules/apps/zed.nix
+
+    # Hardware (Power management + Bluetooth)
+    ../../modules/hardware/power.nix
+    ../../modules/hardware/bluetooth.nix
+  ];
+}
