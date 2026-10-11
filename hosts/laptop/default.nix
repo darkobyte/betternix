@@ -5,10 +5,10 @@
     ./hardware-configuration.nix
     ../common
     ../common/users/gianluca.nix
-    ../../modules/nixos/boot.nix
-    ../../modules/nixos/networking.nix
-    ../../modules/nixos/audio.nix
-    ../../modules/nixos/desktop.nix
+    ../../modules/nixos/core/boot.nix
+    ../../modules/nixos/core/networking.nix
+    ../../modules/nixos/core/audio.nix
+    ../../modules/nixos/desktop/gnome.nix
     ../../modules/nixos/services/openssh.nix
   ];
 

@@ -8,12 +8,23 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, antigravity-nix, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+        overlays = [
+          antigravity-nix.overlays.default
+        ];
+      };
 
       # Helper function to construct a NixOS host with integrated Home Manager
       mkHost = { hostName, homeProfile ? hostName }:
@@ -22,6 +33,11 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./hosts/${hostName}
+            {
+              nixpkgs.overlays = [
+                antigravity-nix.overlays.default
+              ];
+            }
             home-manager.nixosModules.home-manager
             {
               home-manager = {
