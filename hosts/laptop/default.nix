@@ -9,6 +9,7 @@
     ../../modules/nixos/core/networking.nix
     ../../modules/nixos/core/audio.nix
     ../../modules/nixos/desktop/gnome.nix
+    ../../modules/nixos/desktop/mangowc.nix
     ../../modules/nixos/services/openssh.nix
   ];
 

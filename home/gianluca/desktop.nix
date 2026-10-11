@@ -4,6 +4,9 @@
   imports = [
     ./default.nix
 
+    # Desktop Shell / Compositor Config
+    ../../modules/home/desktop/mangowc.nix
+
     # AI Assistants & Agents
     ../../modules/home/ai/agy.nix
     ../../modules/home/ai/opencode.nix

@@ -2,7 +2,23 @@
 
 A granular, modular NixOS and Home Manager flake configuration designed for multiple client machines (Desktop PC, Laptop, Server).
 
-Every application and system component has its **own dedicated `.nix` file**, neatly sorted into domain-specific folders (`browsers/`, `editors/`, `ai/`, `media/`, `productivity/`, `gaming/`, `core/`, `services/`). In each profile, you decide exactly which applications and features are installed simply by importing their individual files.
+Every application, desktop environment, and system component has its **own dedicated `.nix` file**, neatly sorted into domain-specific folders (`desktop/`, `browsers/`, `editors/`, `ai/`, `media/`, `productivity/`, `gaming/`, `core/`, `services/`).
+
+---
+
+## 🖥️ Desktop Environments: MangoWC + Noctalia & GNOME
+
+Both **MangoWC** (with **Noctalia** shell) and **GNOME** are installed side-by-side:
+
+- **MangoWC + Noctalia** is set as the default session.
+- **GNOME** is kept fully installed and available.
+
+### How to Switch Between MangoWC and GNOME
+You do not need to reinstall anything or change code to switch:
+1. On the **GDM login screen**, click your username.
+2. Click the **gear icon ⚙️** at the bottom-right corner of the screen.
+3. Select either **Mango** or **GNOME** (Wayland or X11).
+4. Enter your password and log in. GDM will remember your choice for future reboots.
 
 ---
 
@@ -12,16 +28,17 @@ Every application and system component has its **own dedicated `.nix` file**, ne
 .
 ├── flake.nix                               # Flake inputs, host definitions & Home Manager wiring
 ├── flake.lock                              # Locked dependency revisions
+├── README.md
 ├── hosts/                                  # Machine-specific configurations
 │   ├── common/                             # Shared across all systems
 │   │   ├── default.nix                     # Base nix settings, zram, locale, packages
 │   │   └── users/
 │   │       └── gianluca.nix                # System user declaration (groups, shell)
 │   ├── desktop/                            # Desktop workstation host
-│   │   ├── default.nix                     # Desktop host imports (GNOME, Steam, Audio)
+│   │   ├── default.nix                     # Imports: MangoWC, GNOME, Steam, Audio
 │   │   └── hardware-configuration.nix      # Physical hardware configuration
 │   ├── laptop/                             # Laptop host
-│   │   ├── default.nix                     # Laptop host imports (Power management, etc.)
+│   │   ├── default.nix                     # Imports: MangoWC, GNOME, Power management
 │   │   └── hardware-configuration.nix
 │   └── server/                             # Headless server host
 │       ├── default.nix                     # Server host imports (Docker, SSH)
@@ -33,7 +50,8 @@ Every application and system component has its **own dedicated `.nix` file**, ne
 │   │   │   ├── boot.nix                    # Systemd-boot EFI loader
 │   │   │   └── networking.nix              # NetworkManager & firewall
 │   │   ├── desktop/                        # Desktop environments
-│   │   │   └── gnome.nix                   # GDM + GNOME desktop environment
+│   │   │   ├── gnome.nix                   # GDM + GNOME desktop environment
+│   │   │   └── mangowc.nix                 # MangoWC compositor + Noctalia shell
 │   │   ├── gaming/                         # System-level gaming
 │   │   │   └── steam.nix                   # Steam (32-bit graphics drivers & firewall rules)
 │   │   └── services/                       # Background services
@@ -44,6 +62,8 @@ Every application and system component has its **own dedicated `.nix` file**, ne
 │       │   └── opencode.nix                # OpenCode AI terminal agent
 │       ├── browsers/                       # Web browsers
 │       │   └── brave.nix                   # Brave Browser
+│       ├── desktop/                        # User desktop compositor configuration
+│       │   └── mangowc.nix                 # MangoWC autostart (launches Noctalia shell)
 │       ├── editors/                        # Code & text editors
 │       │   ├── neovim.nix                  # Neovim
 │       │   ├── vscode.nix                  # Visual Studio Code
@@ -65,16 +85,16 @@ Every application and system component has its **own dedicated `.nix` file**, ne
 └── home/                                   # User profiles per machine type
     └── gianluca/
         ├── default.nix                     # Base profile shared across all profiles
-        ├── desktop.nix                     # Desktop profile: imports all apps & wine
-        ├── laptop.nix                      # Laptop profile: imports dev & productivity apps
+        ├── desktop.nix                     # Desktop profile: imports all apps, wine & mangowc
+        ├── laptop.nix                      # Laptop profile: imports dev, productivity & mangowc
         └── server.nix                      # Server profile: imports headless tools only
 ```
 
 ---
 
-## 🎯 How App Selection Works
+## 🎯 How App & Feature Selection Works
 
-Each application lives in its own file under its corresponding category folder in `modules/home/`.
+Each application and desktop component lives in its own file under its corresponding category folder.
 
 To install or uninstall an app from a profile, you simply add or remove its single import line.
 
@@ -85,6 +105,9 @@ To install or uninstall an app from a profile, you simply add or remove its sing
 {
   imports = [
     ./default.nix
+
+    # Desktop Shell / Compositor Config
+    ../../modules/home/desktop/mangowc.nix
 
     # AI Assistants & Agents
     ../../modules/home/ai/agy.nix
@@ -111,53 +134,6 @@ To install or uninstall an app from a profile, you simply add or remove its sing
 }
 ```
 
-### Example: Laptop Profile (`home/gianluca/laptop.nix`)
-On laptop, Wine is omitted to save battery and disk:
-```nix
-{ pkgs, ... }:
-
-{
-  imports = [
-    ./default.nix
-
-    # AI Assistants & Agents
-    ../../modules/home/ai/agy.nix
-    ../../modules/home/ai/opencode.nix
-
-    # Browsers
-    ../../modules/home/browsers/brave.nix
-
-    # Code Editors
-    ../../modules/home/editors/vscode.nix
-    ../../modules/home/editors/zed.nix
-
-    # Media & Audio
-    ../../modules/home/media/spotify.nix
-
-    # Productivity & Cloud
-    ../../modules/home/productivity/bitwarden.nix
-    ../../modules/home/productivity/nextcloud.nix
-    ../../modules/home/productivity/onlyoffice.nix
-  ];
-}
-```
-
-### Example: Server Profile (`home/gianluca/server.nix`)
-On server, only CLI utilities are imported:
-```nix
-{ pkgs, ... }:
-
-{
-  imports = [
-    ./default.nix
-
-    # CLI-only tools for Server:
-    ../../modules/home/ai/agy.nix
-    ../../modules/home/ai/opencode.nix
-  ];
-}
-```
-
 ---
 
 ## ➕ How to Add a New Application
@@ -172,13 +148,10 @@ On server, only CLI utilities are imported:
      ];
    }
    ```
-   *(Or if Home Manager has dedicated configuration options for it, e.g. `programs.<name>.enable = true;`)*
-
 2. Open the profile where you want the app installed (e.g. `home/gianluca/desktop.nix`) and add:
    ```nix
    ../../modules/home/<category>/<app-name>.nix
    ```
-
 3. Stage your new file in git and verify:
    ```bash
    git add -A
@@ -189,7 +162,7 @@ On server, only CLI utilities are imported:
 
 ## 🖥️ How to Add a New Host
 
-When you have a new computer (e.g. `workstation` or `homelab`):
+When you set up a new computer (e.g. `workstation` or `homelab`):
 
 ### 1. Generate Hardware Configuration on the Target Machine
 On the new machine, run:
@@ -218,6 +191,7 @@ Create `hosts/workstation/default.nix` and pick the system modules you want:
     ../../modules/nixos/core/networking.nix
     ../../modules/nixos/core/audio.nix
     ../../modules/nixos/desktop/gnome.nix
+    ../../modules/nixos/desktop/mangowc.nix
     ../../modules/nixos/services/openssh.nix
   ];
 
@@ -235,7 +209,6 @@ nixosConfigurations = {
   workstation = mkHost { hostName = "workstation"; homeProfile = "desktop"; };
 };
 ```
-*(You can map `homeProfile` to an existing profile like `"desktop"` or `"laptop"`, or create a custom `home/gianluca/workstation.nix`).*
 
 ### 5. Stage in Git & Apply
 ```bash
