@@ -64,15 +64,17 @@
       nixosConfigurations = {
         desktop = mkHost { hostName = "desktop"; };
         laptop = mkHost { hostName = "laptop"; };
+        minimaldesktop = mkHost { hostName = "laptop"; homeProfile = "minimaldesktop"; };
         server = mkHost { hostName = "server"; };
 
         # Alias for current host (hostname: nixos)
-        nixos = mkHost { hostName = "desktop"; };
+        nixos = mkHost { hostName = "laptop"; homeProfile = "minimaldesktop"; };
       };
 
       homeConfigurations = {
         "gianluca@desktop" = mkHome { homeProfile = "desktop"; };
         "gianluca@laptop"  = mkHome { homeProfile = "laptop"; };
+        "gianluca@minimaldesktop" = mkHome { homeProfile = "minimaldesktop"; };
         "gianluca@server"  = mkHome { homeProfile = "server"; };
       };
     };
