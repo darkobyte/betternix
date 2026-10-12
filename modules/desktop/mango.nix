@@ -85,8 +85,9 @@ in
     # Typography
     font pango:JetBrainsMono Nerd Font 10
 
-    # Output / Wallpaper
+    # Output / Wallpaper & Display Scaling
     output * bg /etc/pulsar/wallpaper.png fill
+    output eDP-1 scale 1.6
 
     # Autostart Noctalia desktop shell
     exec_always noctalia
@@ -101,9 +102,9 @@ in
     default_border none
     default_floating_border none
     smart_borders on
-    smart_gaps on
+    smart_gaps off
 
-    # Gaps between windows
+    # Margins and gaps (Consistent spacing on all sides, even with 1 window)
     gaps inner 8
     gaps outer 8
 
