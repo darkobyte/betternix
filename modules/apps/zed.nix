@@ -1,14 +1,14 @@
 { pkgs, ... }:
 let
-  # Wrapper binary so running either `zed` or `zeditor` launches the editor cleanly with Wayland flags
-  zedWrapped = pkgs.writeShellScriptBin "zed" ''
-    exec zeditor "$@"
+  # Wrapper binary ensuring stale zed socket/processes don't block opening files
+  zedScript = pkgs.writeShellScriptBin "zed" ''
+    exec ${pkgs.zed-editor}/bin/zeditor "$@"
   '';
 in
 {
-  environment.systemPackages = with pkgs; [
-    zed-editor
-    zedWrapped
+  environment.systemPackages = [
+    pkgs.zed-editor
+    zedScript
   ];
 
   # Wrapper desktop entry ensure Zed is registered and easily launched by fuzzel/rofi/menus
@@ -18,7 +18,7 @@ in
     Name=Zed
     GenericName=Text Editor
     Comment=A high-performance, multiplayer code editor.
-    Exec=zeditor %F
+    Exec=${pkgs.zed-editor}/bin/zeditor %F
     Icon=zed
     Terminal=false
     Type=Application
