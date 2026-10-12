@@ -204,6 +204,13 @@
     [widget.clock]
     format = "{:%H:%M}"
     interactive = true
+
+    [widget.workspaces]
+    style = "regular"
+    focused_color = "#ffffff"
+    occupied_color = "#334155"
+    empty_color = "#1e293b"
+    urgent_color = "#ef4444"
   '';
 
   programs.home-manager.enable = true;
