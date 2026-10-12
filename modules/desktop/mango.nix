@@ -161,10 +161,12 @@ in
     bindsym XF86MonBrightnessUp exec brightnessctl set +5%
     bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
-    # Screenshot shortcuts
+    # Screenshot shortcuts (Super+Shift+S region edit, Super+Shift+P fullscreen, Super+Ctrl+S quick area)
+    bindsym --to-code $mod+Shift+s exec screenshot edit
+    bindsym --to-code $mod+Shift+p exec screenshot fullscreen
+    bindsym --to-code $mod+Ctrl+s exec screenshot area
     bindsym Print exec screenshot fullscreen
     bindsym Shift+Print exec screenshot edit
-    bindsym $mod+Shift+s exec screenshot edit
     bindsym Ctrl+Print exec screenshot area
   '';
 
@@ -179,6 +181,9 @@ in
     "Mod4+q" = "close"
     "Mod4+Return" = "spawn foot"
     "Mod4+space" = "spawn fuzzel"
+    "Mod4+Shift+s" = "spawn screenshot edit"
+    "Mod4+Shift+p" = "spawn screenshot fullscreen"
+    "Mod4+Ctrl+s" = "spawn screenshot area"
     "Mod4+1" = "workspace 1"
     "Mod4+2" = "workspace 2"
     "Mod4+3" = "workspace 3"

@@ -11,6 +11,7 @@
     fzf
     fastfetch
     lazygit
+    gh
     google-antigravity-cli # Google Antigravity CLI (command: agy)
   ];
 
