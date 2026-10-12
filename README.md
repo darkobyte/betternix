@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/badge/NixOS-24.11_Stable-blue?logo=nixos&logoColor=white&style=for-the-badge" alt="NixOS Version" />
   <img src="https://img.shields.io/badge/Home_Manager-Integrated-teal?logo=nixos&logoColor=white&style=for-the-badge" alt="Home Manager" />
   <img src="https://img.shields.io/badge/Desktop-Mango_WM-orange?style=for-the-badge" alt="Desktop WM" />
-  <img src="https://img.shields.io/badge/Shell_Bar-Noctiluca-purple?style=for-the-badge" alt="Bar Client" />
+  <img src="https://img.shields.io/badge/Shell_Bar-Noctalia-purple?style=for-the-badge" alt="Desktop Shell" />
   <img src="https://img.shields.io/badge/Architecture-Modular_Isolation-emerald?style=for-the-badge" alt="Architecture" />
 </p>
 
@@ -25,7 +25,7 @@
 
 * 🧩 **Strict Concern Isolation:** Every service, desktop tool, GUI program, and hardware profile lives in its own standalone `.nix` file under `modules/`.
 * 🛡️ **Zero Secret Leakage:** Dynamic environment variables and identity credentials are ingested exclusively at evaluation time via `.env.json`, keeping personal data completely out of Git version history.
-* 🪟 **Next-Gen Wayland Desktop:** Features **Mango WM** with native tiling, custom workspace keybinds, and **Noctiluca** bar/shell client integration.
+* 🪟 **Next-Gen Wayland Desktop:** Features **Mango WM** with native tiling, custom workspace keybinds, and **Noctalia** desktop shell integration.
 * 📦 **Integrated Home Manager:** Complete declarative user lifecycle orchestration (`home/user.nix`), powering Zsh aliases, Starship prompt, and terminal theming.
 * 🧪 **Automated Build Safeguards:** Built-in dry-run evaluation and flake health checks ensure system definitions compile cleanly before applying any live modifications.
 * 🖥️ **Interactive Terminal UI:** Complete terminal manager (`pulsar.sh`) providing centered dialogs for environment customization, store optimization, and target deployment.
@@ -61,7 +61,7 @@ PULSAR provides 5 distinct profiles tailored for specialized system workloads:
 | Module / Component | Workstation | Gaming | Dev | Laptop | Server |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | `modules/core/*` | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `modules/desktop/*` (Mango + Noctiluca) | ✅ | ✅ | ✅ | ✅ | ❌ |
+| `modules/desktop/*` (Mango + Noctalia) | ✅ | ✅ | ✅ | ✅ | ❌ |
 | `modules/apps/firefox.nix` | ✅ | ✅ | ✅ | ✅ | ❌ |
 | `modules/apps/brave.nix` | ✅ | ❌ | ✅ | ✅ | ❌ |
 | `modules/apps/discord.nix` | ✅ | ✅ | ❌ | ✅ | ❌ |

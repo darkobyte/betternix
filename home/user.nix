@@ -29,7 +29,7 @@
       gc = "nix-collect-garbage -d";
     };
     initExtra = ''
-      # PULSAR Greeting
+      # PULSAR Environment
       if [ -z "$PULSAR_SHELL_INITIALIZED" ]; then
         export PULSAR_SHELL_INITIALIZED=1
       fi
@@ -62,8 +62,8 @@
   # Git user settings loaded from env
   programs.git = {
     enable = true;
-    userName = env.fullName or "Pulsar Administrator";
-    userEmail = env.email or "pulsar@example.com";
+    userName = env.fullName or "Gianluca";
+    userEmail = env.email or "gianluca@gmail.com";
     extraConfig = {
       init.defaultBranch = "main";
       pull.rebase = true;

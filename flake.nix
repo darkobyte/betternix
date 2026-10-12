@@ -8,18 +8,22 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, noctalia, ... }@inputs:
     let
       system = "x86_64-linux";
       envPath = ./.env.json;
       fallbackEnv = {
-        username = "pulsar";
-        fullName = "Pulsar Administrator";
-        email = "pulsar@example.com";
-        hostname = "pulsar-node";
-        timezone = "UTC";
+        username = "gianluca";
+        fullName = "Gianluca";
+        email = "gianluca@gmail.com";
+        hostname = "dumbledore";
+        timezone = "Europe/Rome";
         locale = "en_US.UTF-8";
       };
       env =
@@ -35,6 +39,7 @@
         };
         modules = [
           hostPath
+          noctalia.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

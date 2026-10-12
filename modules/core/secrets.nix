@@ -2,11 +2,11 @@
 let
   envPath = ../../.env.json;
   fallbackEnv = {
-    username = "pulsar";
-    fullName = "Pulsar Administrator";
-    email = "pulsar@example.com";
-    hostname = "pulsar-node";
-    timezone = "UTC";
+    username = "gianluca";
+    fullName = "Gianluca";
+    email = "gianluca@gmail.com";
+    hostname = "dumbledore";
+    timezone = "Europe/Rome";
     locale = "en_US.UTF-8";
   };
   env =

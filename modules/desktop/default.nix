@@ -2,7 +2,7 @@
 {
   imports = [
     ./mango.nix
-    ./noctiluca.nix
+    ./noctalia.nix
     ./display.nix
     ./theme.nix
     ./fonts.nix

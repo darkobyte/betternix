@@ -34,7 +34,7 @@ nixos-config/
 │   └── server/
 ├── modules/                 # Modular system capabilities
 │   ├── core/                # Base OS definitions (networking, audio, users, etc.)
-│   ├── desktop/             # Mango WM, Noctiluca bar, displays, and fonts
+│   ├── desktop/             # Mango WM, Noctalia desktop shell, displays, and fonts
 │   ├── apps/                # Standalone GUI applications
 │   ├── gaming/              # Steam, Wine, Proton compatibility stack
 │   ├── dev/                 # Virtualization (Docker) and compiler toolchains

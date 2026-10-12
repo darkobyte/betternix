@@ -2,6 +2,7 @@
 {
   services.xserver.enable = false;
 
+  # Console-based tuigreet login screen on tty1
   services.greetd = {
     enable = true;
     settings = {
@@ -12,7 +13,7 @@
     };
   };
 
-  # Graphics acceleration
+  # Graphics acceleration for AMD Phoenix / modern GPUs
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
