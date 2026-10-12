@@ -9,12 +9,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     noctalia = {
       url = "github:noctalia-dev/noctalia";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, noctalia, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, antigravity-nix, noctalia, ... }@inputs:
     let
       system = "x86_64-linux";
       envPath = ./.env.json;
@@ -38,6 +43,11 @@
           inherit inputs env;
         };
         modules = [
+          {
+            nixpkgs.overlays = [
+              antigravity-nix.overlays.default
+            ];
+          }
           hostPath
           noctalia.nixosModules.default
           home-manager.nixosModules.home-manager

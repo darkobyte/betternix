@@ -11,6 +11,7 @@
     fzf
     fastfetch
     lazygit
+    google-antigravity-cli # Google Antigravity CLI (command: agy)
   ];
 
   # Zsh configuration and aliases
@@ -27,6 +28,7 @@
       rebuild = "sudo nixos-rebuild switch --flake .";
       pulsar = "./pulsar.sh";
       gc = "nix-collect-garbage -d";
+      zed = "zeditor";
     };
     initExtra = ''
       # PULSAR Environment
