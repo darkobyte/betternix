@@ -17,6 +17,7 @@
     ../../modules/apps/zed.nix
     ../../modules/apps/obsidian.nix
     ../../modules/apps/screenshot.nix
+    ../../modules/apps/nextcloud.nix
 
     # Hardware (Power management + Bluetooth)
     ../../modules/hardware/power.nix
