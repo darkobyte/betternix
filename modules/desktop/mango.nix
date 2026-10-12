@@ -11,6 +11,8 @@ let
 
     if command -v mango >/dev/null 2>&1; then
       exec mango
+    elif command -v swayfx >/dev/null 2>&1; then
+      exec swayfx -c /etc/mango/sway.conf
     else
       exec sway -c /etc/mango/sway.conf
     fi
@@ -31,9 +33,10 @@ let
   });
 in
 {
-  # Core Wayland & compositor support
+  # Core Wayland & compositor support (SwayFX provides rounded corners, blur, and modern aesthetics)
   programs.sway = {
     enable = true;
+    package = pkgs.swayfx;
     wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [
       swaylock
@@ -59,6 +62,7 @@ in
 
   # System package dependencies and Mango configuration file helper
   environment.systemPackages = with pkgs; [
+    pkgs.swayfx
     mangoSession
     foot
     fuzzel
@@ -68,39 +72,56 @@ in
     swaybg
   ];
 
-  # Mango WM master Sway configuration implementing required keybindings:
+  # Mango WM master compositor configuration:
+  # Ultra-clean dark aesthetics, 0 border, subtle corner radius, gaps
   # Super + Q close
   # Super + Enter terminal (foot)
   # Super + Space launcher (fuzzel)
   # Super + [1..9] workspaces
   environment.etc."mango/sway.conf".text = ''
-    # Mango WM Compositor Configuration
+    # Mango WM Master Compositor Configuration
     set $mod Mod4
 
-    # Font
+    # Typography
     font pango:JetBrainsMono Nerd Font 10
 
     # Output / Wallpaper
     output * bg /etc/pulsar/wallpaper.png fill
 
-    # Autostart Noctalia desktop shell if present
+    # Autostart Noctalia desktop shell
     exec_always noctalia
 
-    # Input settings
+    # Touchpad gestures & input
     input type:touchpad {
       tap enabled
       natural_scroll enabled
     }
 
-    # Appearance
-    gaps inner 6
-    gaps outer 10
-    default_border pixel 2
-    default_floating_border pixel 2
+    # Window Borders & Corner Radius (Ultra Clean Minimalist)
+    default_border none
+    default_floating_border none
+    smart_borders on
+    smart_gaps on
 
-    client.focused          #38bdf8 #0b0f19 #e2e8f0 #38bdf8 #38bdf8
-    client.focused_inactive #334155 #0b0f19 #94a3b8 #334155 #334155
-    client.unfocused        #1e293b #0b0f19 #64748b #1e293b #1e293b
+    # Gaps between windows
+    gaps inner 8
+    gaps outer 8
+
+    # Rounded corners (SwayFX)
+    corner_radius 10
+
+    # Shadows & blur (SwayFX eye-candy)
+    shadows on
+    shadow_blur_radius 15
+    shadow_color #00000099
+    blur on
+    blur_passes 3
+    blur_radius 5
+
+    # Color palette (Deep Minimalist Dark Mode - No bright border lines)
+    client.focused          #00000000 #0b0f19 #e2e8f0 #00000000 #00000000
+    client.focused_inactive #00000000 #0b0f19 #94a3b8 #00000000 #00000000
+    client.unfocused        #00000000 #0b0f19 #64748b #00000000 #00000000
 
     # Core Keybindings
     bindsym $mod+Return exec foot
@@ -142,9 +163,9 @@ in
   # Keep config.toml as specified
   environment.etc."mango/config.toml".text = ''
     [general]
-    border_width = 2
-    gaps_inner = 6
-    gaps_outer = 10
+    border_width = 0
+    gaps_inner = 8
+    gaps_outer = 8
 
     [keybindings]
     "Mod4+q" = "close"
