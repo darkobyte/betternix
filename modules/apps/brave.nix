@@ -5,7 +5,7 @@ let
     if [ -d "$HOME/.config/BraveSoftware/Brave-Browser" ]; then
       rm -f "$HOME/.config/BraveSoftware/Brave-Browser/Singleton"*
     fi
-    exec ${pkgs.brave}/bin/brave "$@"
+    exec ${pkgs.brave}/bin/brave --ozone-platform-hint=auto "$@"
   '';
 in
 {
