@@ -15,6 +15,8 @@
     ../../modules/apps/discord.nix
     ../../modules/apps/spotify.nix
     ../../modules/apps/zed.nix
+    ../../modules/apps/obsidian.nix
+    ../../modules/apps/screenshot.nix
 
     # Hardware
     ../../modules/hardware/bluetooth.nix

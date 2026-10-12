@@ -8,6 +8,7 @@ let
     export MOZ_ENABLE_WAYLAND=1
     export QT_QPA_PLATFORM=wayland
     export GDK_BACKEND=wayland
+    export NIXOS_OZONE_WL=1
 
     if command -v mango >/dev/null 2>&1; then
       exec mango
@@ -159,6 +160,12 @@ in
     bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
     bindsym XF86MonBrightnessUp exec brightnessctl set +5%
     bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+    # Screenshot shortcuts
+    bindsym Print exec screenshot fullscreen
+    bindsym Shift+Print exec screenshot edit
+    bindsym $mod+Shift+s exec screenshot edit
+    bindsym Ctrl+Print exec screenshot area
   '';
 
   # Keep config.toml as specified
