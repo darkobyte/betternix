@@ -5,8 +5,17 @@
     kdePackages.breeze-icons
     kdePackages.kio-extras
     kdePackages.kdegraphics-thumbnailers
+    kdePackages.qtsvg
+    kdePackages.kimageformats
   ];
 
-  # Enable dconf for GTK/KDE file picker and desktop settings integration
+  # System-wide KDE globals so Dolphin and Qt apps use breeze-dark icons out of the box
+  environment.etc."xdg/kdeglobals".text = ''
+    [Icons]
+    Theme=breeze-dark
+  '';
+
+  # Enable Qt module integration and dconf
+  qt.enable = true;
   programs.dconf.enable = true;
 }

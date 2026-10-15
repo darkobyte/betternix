@@ -111,6 +111,12 @@
     border=334155ff
   '';
 
+  # User dotfiles: KDE / Qt apps globals (ensures Dolphin uses breeze-dark icons)
+  xdg.configFile."kdeglobals".text = ''
+    [Icons]
+    Theme=breeze-dark
+  '';
+
   # User dotfiles: Sync Noctalia config into ~/.config/noctalia/config.toml
   xdg.configFile."noctalia/config.toml".text = ''
     [shell]
@@ -153,8 +159,8 @@
 
     [shell.window_switcher]
     style = "compact"
-    current_workspace_only = true
-    show_all_outputs = false
+    current_workspace_only = false
+    show_all_outputs = true
     show_app_icon = true
     show_caption = true
     show_count = true

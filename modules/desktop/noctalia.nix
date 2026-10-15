@@ -54,8 +54,8 @@ in
 
     [shell.window_switcher]
     style = "compact"
-    current_workspace_only = true
-    show_all_outputs = false
+    current_workspace_only = false
+    show_all_outputs = true
     show_app_icon = true
     show_caption = true
     show_count = true
