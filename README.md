@@ -71,6 +71,8 @@ PULSAR provides 5 distinct profiles tailored for specialized system workloads:
 | `modules/apps/obsidian.nix` | ✅ | ❌ | ❌ | ✅ | ❌ |
 | `modules/apps/screenshot.nix` | ✅ | ❌ | ❌ | ✅ | ❌ |
 | `modules/apps/nextcloud.nix` | ✅ | ❌ | ❌ | ✅ | ❌ |
+| `modules/apps/intellij.nix` | ✅ | ❌ | ❌ | ✅ | ❌ |
+| `modules/languages/java.nix` | ✅ | ❌ | ❌ | ✅ | ❌ |
 | `modules/gaming/steam.nix` | ❌ | ✅ | ❌ | ❌ | ❌ |
 | `modules/gaming/wine.nix` | ❌ | ✅ | ❌ | ❌ | ❌ |
 | `modules/gaming/proton.nix` | ❌ | ✅ | ❌ | ❌ | ❌ |

@@ -18,6 +18,10 @@
     ../../modules/apps/obsidian.nix
     ../../modules/apps/screenshot.nix
     ../../modules/apps/nextcloud.nix
+    ../../modules/apps/intellij.nix
+
+    # Programming Languages
+    ../../modules/languages/default.nix
 
     # Hardware
     ../../modules/hardware/bluetooth.nix

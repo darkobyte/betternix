@@ -17,9 +17,13 @@
     noctalia = {
       url = "github:noctalia-dev/noctalia";
     };
+
+    nixpkgs-unstable = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, antigravity-nix, noctalia, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, antigravity-nix, noctalia, ... }@inputs:
     let
       system = "x86_64-linux";
       envPath = ./.env.json;
@@ -46,6 +50,10 @@
           {
             nixpkgs.overlays = [
               antigravity-nix.overlays.default
+              (final: prev: {
+                geteduroam = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.geteduroam;
+                geteduroam-cli = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.geteduroam-cli;
+              })
             ];
           }
           hostPath

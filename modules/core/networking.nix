@@ -1,4 +1,4 @@
-{ env, ... }:
+{ pkgs, env, ... }:
 {
   networking = {
     hostName = env.hostname or "pulsar-node";
@@ -8,4 +8,9 @@
       allowPing = true;
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    geteduroam
+    geteduroam-cli
+  ];
 }

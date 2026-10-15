@@ -5,6 +5,8 @@
 
     # Core system modules
     ../../modules/core/default.nix
+    ../../modules/dev/docker.nix
+
 
     # Desktop stack
     ../../modules/desktop/default.nix
@@ -18,6 +20,10 @@
     ../../modules/apps/obsidian.nix
     ../../modules/apps/screenshot.nix
     ../../modules/apps/nextcloud.nix
+    ../../modules/apps/intellij.nix
+
+    # Programming Languages
+    ../../modules/languages/default.nix
 
     # Hardware (Power management + Bluetooth)
     ../../modules/hardware/power.nix
