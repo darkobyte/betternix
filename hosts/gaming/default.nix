@@ -11,13 +11,12 @@
 
     # Applications
     ../../modules/apps/firefox.nix
+    ../../modules/apps/dolphin.nix
     ../../modules/apps/discord.nix
     ../../modules/apps/spotify.nix
 
     # Gaming stack
-    ../../modules/gaming/steam.nix
-    ../../modules/gaming/wine.nix
-    ../../modules/gaming/proton.nix
+    ../../modules/gaming/default.nix
 
     # Hardware
     ../../modules/hardware/bluetooth.nix

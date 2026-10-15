@@ -12,15 +12,16 @@
     # Applications
     ../../modules/apps/firefox.nix
     ../../modules/apps/brave.nix
+    ../../modules/apps/dolphin.nix
     ../../modules/apps/discord.nix
     ../../modules/apps/spotify.nix
     ../../modules/apps/zed.nix
     ../../modules/apps/obsidian.nix
-    ../../modules/apps/screenshot.nix
     ../../modules/apps/nextcloud.nix
     ../../modules/apps/intellij.nix
 
-    # Programming Languages
+    # Development & Programming Languages
+    ../../modules/dev/default.nix
     ../../modules/languages/default.nix
 
     # Hardware

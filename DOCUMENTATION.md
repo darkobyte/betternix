@@ -38,6 +38,7 @@ nixos-config/
 │   ├── apps/                # Standalone GUI applications
 │   ├── gaming/              # Steam, Wine, Proton compatibility stack
 │   ├── dev/                 # Virtualization (Docker) and compiler toolchains
+│   ├── languages/           # Language environments (Java JDK 21, Node.js 22, runtimes)
 │   └── hardware/            # Power management and Bluetooth connectivity
 └── home/
     └── user.nix             # Home Manager profile (Zsh, Starship, dotfiles)

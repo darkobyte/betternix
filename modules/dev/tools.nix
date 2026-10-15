@@ -6,13 +6,9 @@
     cmake
     pkg-config
     python3
-    nodejs
     rustup
     go
-    htop
-    ripgrep
-    fd
-    tree
-    unzip
+    ninja
+    gdb
   ];
 }

@@ -128,9 +128,34 @@ in
     # Core Keybindings
     bindsym $mod+Return exec foot
     bindsym $mod+space exec fuzzel
+    bindsym $mod+e exec dolphin
     bindsym $mod+q kill
     bindsym $mod+Shift+q exit
     bindsym $mod+Shift+c reload
+
+    # Window Switcher / Overview (Win+Tab and Alt+Tab)
+    bindsym $mod+Tab exec noctalia msg window-switcher
+    bindsym Mod1+Tab exec noctalia msg window-switcher
+
+    # Focus navigation
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+    bindsym $mod+h focus left
+    bindsym $mod+j focus down
+    bindsym $mod+k focus up
+    bindsym $mod+l focus right
+
+    # Move focused window within workspace
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+    bindsym $mod+Shift+h move left
+    bindsym $mod+Shift+j move down
+    bindsym $mod+Shift+k move up
+    bindsym $mod+Shift+l move right
 
     # Workspace navigation
     bindsym $mod+1 workspace number 1
@@ -143,16 +168,16 @@ in
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
 
-    # Move containers to workspaces
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6
-    bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9
+    # Move containers to workspaces and follow
+    bindsym $mod+Shift+1 move container to workspace number 1; workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2; workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3; workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4; workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5; workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6; workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7; workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8; workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9; workspace number 9
 
     # Volume and brightness keys
     bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
@@ -181,6 +206,9 @@ in
     "Mod4+q" = "close"
     "Mod4+Return" = "spawn foot"
     "Mod4+space" = "spawn fuzzel"
+    "Mod4+e" = "spawn dolphin"
+    "Mod4+Tab" = "spawn noctalia msg window-switcher"
+    "Mod1+Tab" = "spawn noctalia msg window-switcher"
     "Mod4+Shift+s" = "spawn screenshot edit"
     "Mod4+Shift+p" = "spawn screenshot fullscreen"
     "Mod4+Ctrl+s" = "spawn screenshot area"

@@ -6,5 +6,6 @@
     ./display.nix
     ./theme.nix
     ./fonts.nix
+    ./screenshot.nix
   ];
 }

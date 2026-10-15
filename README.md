@@ -61,23 +61,20 @@ PULSAR provides 5 distinct profiles tailored for specialized system workloads:
 | Module / Component | Workstation | Gaming | Dev | Laptop | Server |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | `modules/core/*` | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `modules/desktop/*` (Mango + Noctalia) | ✅ | ✅ | ✅ | ✅ | ❌ |
+| `modules/desktop/*` (Mango + Noctalia + Satty) | ✅ | ✅ | ✅ | ✅ | ❌ |
 | `modules/apps/firefox.nix` | ✅ | ✅ | ✅ | ✅ | ❌ |
 | `modules/apps/brave.nix` | ✅ | ❌ | ✅ | ✅ | ❌ |
+| `modules/apps/dolphin.nix` | ✅ | ✅ | ✅ | ✅ | ❌ |
 | `modules/apps/discord.nix` | ✅ | ✅ | ❌ | ✅ | ❌ |
 | `modules/apps/spotify.nix` | ✅ | ✅ | ❌ | ✅ | ❌ |
 | `modules/apps/zed.nix` | ✅ | ❌ | ✅ | ✅ | ❌ |
 | `modules/apps/opencode.nix` | ❌ | ❌ | ✅ | ❌ | ❌ |
 | `modules/apps/obsidian.nix` | ✅ | ❌ | ❌ | ✅ | ❌ |
-| `modules/apps/screenshot.nix` | ✅ | ❌ | ❌ | ✅ | ❌ |
 | `modules/apps/nextcloud.nix` | ✅ | ❌ | ❌ | ✅ | ❌ |
-| `modules/apps/intellij.nix` | ✅ | ❌ | ❌ | ✅ | ❌ |
-| `modules/languages/java.nix` | ✅ | ❌ | ❌ | ✅ | ❌ |
-| `modules/gaming/steam.nix` | ❌ | ✅ | ❌ | ❌ | ❌ |
-| `modules/gaming/wine.nix` | ❌ | ✅ | ❌ | ❌ | ❌ |
-| `modules/gaming/proton.nix` | ❌ | ✅ | ❌ | ❌ | ❌ |
-| `modules/dev/docker.nix` | ❌ | ❌ | ✅ | ❌ | ✅ |
-| `modules/dev/tools.nix` | ❌ | ❌ | ✅ | ❌ | ❌ |
+| `modules/apps/intellij.nix` | ✅ | ❌ | ✅ | ✅ | ❌ |
+| `modules/languages/*` (Java, Node) | ✅ | ❌ | ✅ | ✅ | ❌ |
+| `modules/gaming/*` (Steam, Wine, Proton) | ❌ | ✅ | ❌ | ❌ | ❌ |
+| `modules/dev/*` (Docker, Compilers) | ✅ | ❌ | ✅ | ✅ | ✅ |
 | `modules/hardware/power.nix` | ❌ | ❌ | ❌ | ✅ | ❌ |
 | `modules/hardware/bluetooth.nix` | ✅ | ✅ | ✅ | ✅ | ❌ |
 
@@ -89,9 +86,15 @@ PULSAR provides 5 distinct profiles tailored for specialized system workloads:
 | :--- | :--- | :--- |
 | `Super + Return` | Launch Terminal | Opens `foot` terminal emulator |
 | `Super + Space` | Application Launcher | Opens `fuzzel` launcher |
+| `Super + E` | File Manager | Opens `dolphin` file manager |
+| `Super + Tab` / `Alt + Tab` | Window Switcher | Opens `noctalia` interactive window switcher overlay |
 | `Super + Q` | Close Window | Closes focused Wayland client |
 | `Super + [1..9]` | Switch Workspace | Navigates directly to workspace `1` through `9` |
-| `Super + Shift + [1..9]` | Move to Workspace | Sends focused client to selected workspace |
+| `Super + Shift + [1..9]` | Move & Follow Workspace | Sends focused client to workspace and switches to it immediately |
+| `Super + Shift + Arrows` / `HJKL` | Move Window | Moves window position within layout |
+| `Super + Shift + S` | Fast Screenshot (Annotate) | Captures region, copies to clipboard, opens `satty` instantly |
+| `Super + Ctrl + S` | Instant Area Snip | Captures region directly to clipboard and disk without opening editor |
+| `Super + Shift + P` / `Print` | Fullscreen Screenshot | Captures full screen to clipboard and disk |
 
 ---
 

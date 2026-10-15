@@ -30,7 +30,9 @@ let
         ;;
       edit|annotate)
         GEOM=$(${pkgs.slurp}/bin/slurp 2>/dev/null) || exit 0
-        ${pkgs.grim}/bin/grim -g "$GEOM" - | ${pkgs.swappy}/bin/swappy -f - -o "$FILE"
+        ${pkgs.grim}/bin/grim -g "$GEOM" "$FILE"
+        ${pkgs.wl-clipboard}/bin/wl-copy < "$FILE"
+        ${pkgs.satty}/bin/satty -f "$FILE" --fullscreen --early-exit --copy-command wl-copy --output-filename "$FILE"
         ;;
       *)
         echo "Usage: screenshot [edit|area|full]"
@@ -43,8 +45,8 @@ in
   environment.systemPackages = with pkgs; [
     grim
     slurp
-    swappy
-    grimblast
+    satty
+    wl-clipboard
     libnotify
     screenshotScript
   ];

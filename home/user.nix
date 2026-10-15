@@ -11,7 +11,6 @@
     fzf
     fastfetch
     lazygit
-    gh
     google-antigravity-cli # Google Antigravity CLI (command: agy)
   ];
 
@@ -117,7 +116,7 @@
     [shell]
     corner_radius_scale = 1.0
     font_family = "JetBrainsMono Nerd Font"
-    time_format = "{:%H:%M}"
+    time_format = "{:%H:%M:%S}"
     telemetry_enabled = false
     clipboard_enabled = true
 
@@ -145,8 +144,8 @@
     search_position = "top"
     default_view = "all_apps"
     category_icons_only = true
-    show_settings_button = false
-    show_session_button = false
+    show_settings_button = true
+    show_session_button = true
     show_icons = true
     show_app_origin_indicator = false
     compact = true

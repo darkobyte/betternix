@@ -54,5 +54,10 @@
     pciutils
     usbutils
     jq
+    htop
+    ripgrep
+    fd
+    tree
+    unzip
   ];
 }
