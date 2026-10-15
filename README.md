@@ -89,6 +89,9 @@ PULSAR provides 5 distinct profiles tailored for specialized system workloads:
 | `Super + E` | File Manager | Opens `dolphin` file manager |
 | `Super + Tab` / `Alt + Tab` | Window Switcher | Opens `noctalia` interactive window switcher overlay |
 | `Super + Q` | Close Window | Closes focused Wayland client |
+| `Super + S` | Toggle Tiling / Stacking | Switches between dynamic Tiling and Stacking/Scrolling layout |
+| `Super + W` | Toggle Tabbed Layout | Switches between Tiling and Tabbed layout |
+| `Super + F` | Toggle Fullscreen | Maximizes focused window to fullscreen |
 | `Super + [1..9]` | Switch Workspace | Navigates directly to workspace `1` through `9` |
 | `Super + Shift + [1..9]` | Move & Follow Workspace | Sends focused client to workspace and switches to it immediately |
 | `Super + Shift + Arrows` / `HJKL` | Move Window | Moves window position within layout |

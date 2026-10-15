@@ -107,8 +107,9 @@ in
     exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK
     exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK
 
-    # Autostart Noctalia desktop shell
+    # Autostart Noctalia desktop shell & autotiling daemon
     exec_always noctalia
+    exec_always autotiling
 
     # Touchpad gestures & input
     input type:touchpad {
@@ -149,6 +150,14 @@ in
     bindsym $mod+q kill
     bindsym $mod+Shift+q exit
     bindsym $mod+Shift+c reload
+
+    # Layout toggling (Switch between Tiling and Stacking/Scrolling)
+    bindsym $mod+s layout toggle split stacking
+    bindsym $mod+w layout toggle tabbed split
+    bindsym $mod+f fullscreen toggle
+    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
 
     # Window Switcher / Overview (Win+Tab and Alt+Tab)
     bindsym $mod+Tab exec noctalia msg window-switcher
