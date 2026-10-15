@@ -111,10 +111,65 @@
     border=334155ff
   '';
 
-  # User dotfiles: KDE / Qt apps globals (ensures Dolphin uses breeze-dark icons)
+  # System GTK Theme (Forces dark mode for GTK applications and desktop portals)
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+    iconTheme = {
+      name = "breeze-dark";
+      package = pkgs.kdePackages.breeze-icons;
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+  };
+
+  # FreeDesktop / GNOME Portal color-scheme preference
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      gtk-theme = "Adwaita-dark";
+      icon-theme = "breeze-dark";
+    };
+  };
+
+  # User dotfiles: KDE / Qt apps globals (ensures Dolphin uses breeze-dark icons & dark mode)
   xdg.configFile."kdeglobals".text = ''
+    [General]
+    ColorScheme=BreezeDark
+    Name=Breeze Dark
+
     [Icons]
     Theme=breeze-dark
+
+    [KDE]
+    widgetStyle=Breeze
+
+    [Colors:Window]
+    BackgroundNormal=36,41,46
+    ForegroundNormal=239,240,241
+
+    [Colors:View]
+    BackgroundNormal=30,34,39
+    ForegroundNormal=239,240,241
+
+    [Colors:Button]
+    BackgroundNormal=49,54,59
+    ForegroundNormal=239,240,241
+
+    [Colors:Selection]
+    BackgroundNormal=61,174,233
+    ForegroundNormal=255,255,255
+
+    [Colors:Tooltip]
+    BackgroundNormal=49,54,59
+    ForegroundNormal=239,240,241
   '';
 
   # User dotfiles: Sync Noctalia config into ~/.config/noctalia/config.toml
