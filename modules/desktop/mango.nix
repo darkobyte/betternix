@@ -10,6 +10,9 @@ let
     export GDK_BACKEND=wayland
     export NIXOS_OZONE_WL=1
 
+    systemctl --user import-environment XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE MOZ_ENABLE_WAYLAND QT_QPA_PLATFORM GDK_BACKEND NIXOS_OZONE_WL || true
+    dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE MOZ_ENABLE_WAYLAND QT_QPA_PLATFORM GDK_BACKEND NIXOS_OZONE_WL || true
+
     if command -v mango >/dev/null 2>&1; then
       exec mango
     elif command -v swayfx >/dev/null 2>&1; then
@@ -54,6 +57,16 @@ in
       xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
     ];
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+      sway = {
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+      };
+    };
   };
 
   # Mango WM session desktop file & launcher
@@ -89,6 +102,10 @@ in
     # Output / Wallpaper & Display Scaling
     output * bg /etc/pulsar/wallpaper.png fill
     output eDP-1 scale 1.6
+
+    # Environment synchronization with systemd and DBus (ensures portals and GUI apps launch instantly)
+    exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK
+    exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK
 
     # Autostart Noctalia desktop shell
     exec_always noctalia

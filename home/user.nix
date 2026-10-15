@@ -151,6 +151,14 @@
     compact = true
     sort_by_usage = true
 
+    [shell.window_switcher]
+    style = "compact"
+    current_workspace_only = true
+    show_all_outputs = false
+    show_app_icon = true
+    show_caption = true
+    show_count = true
+
     [theme]
     mode = "dark"
     source = "builtin"
